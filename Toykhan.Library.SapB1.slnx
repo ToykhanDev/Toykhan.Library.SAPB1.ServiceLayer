@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Toykhan.Library.SapB1.ServiceLayer/Toykhan.Library.SapB1.ServiceLayer.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Toykhan.Library.SapB1.ServiceLayer.Tests/Toykhan.Library.SapB1.ServiceLayer.Tests.csproj" />
+  </Folder>
+</Solution>
