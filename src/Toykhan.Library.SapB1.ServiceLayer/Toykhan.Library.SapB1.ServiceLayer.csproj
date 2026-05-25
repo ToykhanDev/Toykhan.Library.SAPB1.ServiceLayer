@@ -13,21 +13,30 @@
     <Description>SAP Business One Service Layer HTTP client. Session management, OData queries, resilient retry, batch support.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/ToykhanDev/Toykhan.Library.SAPB1.ServiceLayer</PackageProjectUrl>
+    <PackageTags>SAP;SAP Business One;Service Layer;OData;HttpClient</PackageTags>
+    <PackageReleaseNotes>1.0.0 initial stable release.</PackageReleaseNotes>
+    <Copyright>Copyright (c) 2026 Gurkan SANLI</Copyright>
+    <RepositoryUrl>https://github.com/ToykhanDev/Toykhan.Library.SAPB1.ServiceLayer</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="9.*" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.*" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.10.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.16" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.16" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Text.Json" Version="9.*" />
+    <PackageReference Include="System.Text.Json" Version="9.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
