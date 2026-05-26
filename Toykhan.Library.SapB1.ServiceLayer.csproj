@@ -36,11 +36,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <Compile Remove="artifacts\**" />
+    <EmbeddedResource Remove="artifacts\**" />
+    <None Remove="artifacts\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Toykhan.Library.SapB1.ServiceLayer.Tests" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

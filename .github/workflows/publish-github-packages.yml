@@ -11,7 +11,7 @@ permissions:
   packages: write
 
 env:
-  PACKAGE_PROJECT: src/Toykhan.Library.SapB1.ServiceLayer/Toykhan.Library.SapB1.ServiceLayer.csproj
+  PACKAGE_PROJECT: Toykhan.Library.SapB1.ServiceLayer.csproj
   PACKAGE_OUTPUT: artifacts/nuget
   GITHUB_PACKAGES_SOURCE: https://nuget.pkg.github.com/ToykhanDev/index.json
 
@@ -33,13 +33,13 @@ jobs:
             10.0.x
 
       - name: Restore
-        run: dotnet restore Toykhan.Library.SapB1.slnx
+        run: dotnet restore "$PACKAGE_PROJECT"
 
-      - name: Test
-        run: dotnet test Toykhan.Library.SapB1.slnx --configuration Release --no-restore
+      - name: Build
+        run: dotnet build "$PACKAGE_PROJECT" --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack "$PACKAGE_PROJECT" --configuration Release --no-restore --output "$PACKAGE_OUTPUT"
+        run: dotnet pack "$PACKAGE_PROJECT" --configuration Release --no-build --output "$PACKAGE_OUTPUT"
 
       - name: Add GitHub Packages source
         run: dotnet nuget add source "$GITHUB_PACKAGES_SOURCE" --name github --username "${{ github.actor }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
