@@ -1,0 +1,55 @@
+name: Publish NuGet.org
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PACKAGE_PROJECT: Toykhan.Library.SapB1.ServiceLayer.csproj
+  PACKAGE_OUTPUT: artifacts/nuget
+  NUGET_SOURCE: https://api.nuget.org/v3/index.json
+
+jobs:
+  publish:
+    name: Pack and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Restore
+        run: dotnet restore "$PACKAGE_PROJECT"
+
+      - name: Build
+        run: dotnet build "$PACKAGE_PROJECT" --configuration Release --no-restore
+
+      - name: Pack
+        run: dotnet pack "$PACKAGE_PROJECT" --configuration Release --no-build --output "$PACKAGE_OUTPUT"
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Publish
+        shell: bash
+        run: |
+          for package in "$PACKAGE_OUTPUT"/*.nupkg; do
+            dotnet nuget push "$package" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source "$NUGET_SOURCE" --skip-duplicate
+          done

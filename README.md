@@ -12,8 +12,13 @@ This package wraps common Service Layer concerns behind a small .NET API:
 
 ## Install
 
-GitHub Packages requires authentication, even when the package is public. Add the
-GitHub Packages NuGet source first:
+From nuget.org:
+
+```powershell
+dotnet add package Toykhan.Library.SapB1.ServiceLayer --version 1.0.0
+```
+
+From GitHub Packages, add the GitHub Packages NuGet source first:
 
 ```powershell
 dotnet nuget add source "https://nuget.pkg.github.com/ToykhanDev/index.json" `
@@ -23,8 +28,8 @@ dotnet nuget add source "https://nuget.pkg.github.com/ToykhanDev/index.json" `
   --store-password-in-clear-text
 ```
 
-Use a GitHub personal access token (classic) with `read:packages` to install the
-package locally. Then install the package:
+Use a GitHub personal access token (classic) with only the `read:packages` scope
+for local installs. Then install the package:
 
 ```powershell
 dotnet add package Toykhan.Library.SapB1.ServiceLayer --version 1.0.0 --source github
